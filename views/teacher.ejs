@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <%-include('./partials/navbar-style.ejs')%>
+  </head>
+  <body>
+    <%-include('./partials/navbar.ejs')%>
+    <h2>TEACHER FORM</h2>
+    <h4><%=action.toUpperCase()%> Teacher Data</h4>
+    <a href="/teachers">show all data</a>
+    <br><br>
+    <form action="/teachers/<%=post%>" method="POST">
+      First name:<br>
+      <input type="text" name="first_name" value="<%=teacher.first_name%>">
+      <br>
+      Last name:<br>
+      <input type="text" name="last_name" value="<%=teacher.last_name%>">
+      <br>
+      Email:<br>
+      <input type="text" name="email" value="<%=teacher.email%>">
+      <br><br>
+      Subject:<br>
+        <select name = "subject">
+          <% subjects.forEach(subject => {
+            if(teacher.SubjectId == subject.id) { %>
+              <option value="<%=subject.id%>" selected ><%=subject.subject_name%></option>
+            <%} else {%>
+              <option value="<%=subject.id%>"><%=subject.subject_name%></option>
+         <% }
+          }) %>
+        </select>
+      <br><br>
+      <input type="submit" value="<%=action%> teacher">
+    </form>
+  </body>
+</html>

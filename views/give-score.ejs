@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%-include('./partials/navbar-style.ejs')%>
+</head>
+<body>
+<%-include('./partials/navbar.ejs')%>
+<h2>STUDENT FORM</h2>
+<h4> GIVE SCORE</h4>
+<br>
+<form action="/subjects/<%=id%>/give-score" method="POST">
+  SCORE:<br>
+  <input type="text" name="score" placeholder="input score">
+  <br><br>
+  <input type="submit" value="submit score">
+</form>
+
+</body>
+</html>

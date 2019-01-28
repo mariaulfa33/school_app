@@ -1,0 +1,16 @@
+const express = require('express')
+const teacher = require('./routes/teacher')
+const student = require('./routes/student')
+const subject = require('./routes/subject')
+const app = express()
+app.set('view engine', 'ejs')
+app.use(express.urlencoded({extended:false}))
+app.get('/', function(req, res) {
+  res.render('home')
+})
+app.use('/teachers', teacher)
+app.use('/students', student)
+app.use('/subjects', subject)
+app.listen(3000, function() {
+  console.log('this is port 3000...')
+})

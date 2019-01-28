@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%-include('./partials/navbar-style.ejs')%>
+</head>
+<body>
+<%-include('./partials/navbar.ejs')%>
+<h2>ADD SUBJECT</h2>
+<h4><a href="/subjects">return to subject list</a></h4>
+<br><br>
+<form action="/subjects/add" method="POST">
+  Subject Name:<br>
+  <input type="text" name="subject_name">
+  <br>
+  <br><br>
+  <input type="submit" value="ADD SUBJECT">
+</form>
+</body>
+</html>

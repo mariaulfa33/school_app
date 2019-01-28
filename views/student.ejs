@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%-include('./partials/navbar-style.ejs')%>
+</head>
+<body>
+<%-include('./partials/navbar.ejs')%>
+<h2>STUDENT FORM</h2>
+<h4><%=action%> Student Data</h4>
+<a href="/students">show all data</a>
+<br><br>
+<form action="/students/<%=post%>" method="POST">
+  First name:<br>
+  <input type="text" name="first_name" value="<%=student.first_name%>">
+  <br>
+  Last name:<br>
+  <input type="text" name="last_name" value="<%=student.last_name%>">
+  <br>
+  Email:<br>
+  <input type="text" name="email" value="<%=student.email%>">
+  <br><br>
+  <input type="submit" value="<%=action%> student">
+</form>
+
+
+</body>
+</html>

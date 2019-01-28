@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%-include('./partials/table-style.ejs')%>
+  <%-include('./partials/navbar-style.ejs')%>
+</head>
+<body>
+    <%-include('./partials/navbar.ejs')%>
+  <div class = "top">
+      <h2><%=name.toUpperCase().substr(0, name.length-1)%> DATA</h2>
+      <a href="/<%=name%>/add" >add <%=name.substr(0, name.length-1)%></a>
+  </div>
+<%=msg%>
+<table>
+    <tr>
+  <%column.forEach(key => { %>
+    <th><%=key%></th>
+  <%})%>
+  <tr>
+  <% for(let i = 0; i < data.length; i++) { %>
+    <tr>
+      <td><%=data[i].id%></td>
+      <td><%=data[i].first_name%></td>
+      <td><%=data[i].last_name%></td>
+      <td><%=data[i].email%></td>
+      <td><%=getSubject(subject[i])%></td>
+      <td><a href="/<%=name%>/edit/<%=data[i].id%>">Edit</a> | <a href="/<%=name%>/delete/<%=data[i].id%>" onclick="return confirm('Delete this <%=name%>?')">Delete</a></td>
+    </tr>
+  <%} %>
+
+
+</table>
+
+</body>
+</html>

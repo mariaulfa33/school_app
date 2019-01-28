@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%-include('./partials/table-style.ejs')%>
+  <%-include('./partials/navbar-style.ejs')%>
+</head>
+<body>
+    <%-include('./partials/navbar.ejs')%>
+  <h2>Add Subject to Student</h2>
+  <table>
+    <tr>
+      <td>First Name</td>
+      <td><%=data.first_name%></td>
+    </tr>
+    <tr>
+        <td>Last Name</td>
+        <td><%=data.last_name%></td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td><%=data.email%></td>
+    </tr>
+  </table>
+  <h3>Choose Subject</h3>
+  <form action="/students/<%=data.id%>/add-subject" method="POST">
+  <select name="subject">
+      <option value="" selected hidden >choose your subject</option>
+    <% subjects.forEach(subject => {
+      let take = false
+        data.Subjects.forEach(subjectStudent => {
+          if(subjectStudent.id == subject.id) {
+            take = true
+          }
+        })
+        if(take == false) { %>
+          <option value="<%=subject.id%>"><%=subject.subject_name%></option>
+        <%}
+      })%>
+  </select>
+  <br> <br>
+  <input type="submit" value="Add Subject">
+</form>
+
+</body>
+</html>
