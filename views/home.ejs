@@ -1,23 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>SCHOOL</title>
-</head>
+<html>
+  <head>
+  </head>
 <body>
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <%-include('./partials/navbar-style.ejs')%>
-    </head>
-    <body>
-    <%-include('./partials/navbar.ejs')%>
-   
-    </body>
-    </html>
-    
-  
+<center>
+<h2>SIGN UP</h2>
+<%=msg%>
+<form action="/user" method="POST">
+  Name:<br>
+  <input type="text" name="name" value="">
+  <br>
+  Email:<br>
+  <input type="text" name="email" value="">
+  <br><br>
+  <input type="submit" value="Submit">
+</form> 
+<br>
+<h2>LOGIN</h2>
+
+<form action="/user/login" method="POST">
+  Email:<br>
+  <input type="text" name="email" value="">
+  <br>
+  Password:<br>
+  <input type="text" name="password" value="">
+  <br><br>
+  <input type="submit" value="Submit">
+</form> 
+</center>
 </body>
 </html>

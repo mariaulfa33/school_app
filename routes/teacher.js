@@ -5,10 +5,11 @@ const router = express.Router()
 
 
 router.get('/', function(req, res) {
+  let order = req.query.name || 'asc'
   let msg = req.query.msg || null
   let teachers = []
   Model.Teacher.findAll({
-    order : [['id', 'ASC']]
+    order : [['first_name', `${order.toUpperCase()}`]]
   })
   .then(data => {
     let promise = []
@@ -20,7 +21,12 @@ router.get('/', function(req, res) {
   })
   .then(subject => {
     let column = ['ID', 'First Name', 'Last Name', 'Email', 'Subject', 'Option']
-    res.render('teacher-list', {data : teachers, msg, name:'teachers', column, subject, getSubject})
+    if(order == 'asc') {
+      order = 'desc'
+    } else if(order == 'desc') {
+      order = 'asc'
+    }
+    res.render('teacher-list', {data : teachers, msg, name:'teachers', column, subject, getSubject, order})
   })
   .catch(err => {
     res.redirect(`/?msg=${err}`)
@@ -40,7 +46,6 @@ router.get('/add', function(req,res) {
   .catch(err => {
     res.redirect('/teachers?msg='+err)
   })
-  
 })
 
 router.post('/add', function(req, res) {
@@ -84,11 +89,9 @@ router.post('/edit/:id', function(req, res) {
     }
   })
   .then(() => {
-    console.log(req.body.subject)
     res.redirect('/teachers')
   })
   .catch((err) => {
-    console.log(err)
     res.redirect(`/teachers?msg=${err.message}`)
   })
 })
@@ -103,6 +106,14 @@ router.get('/delete/:id', function(req, res) {
   .catch(err => {
     res.redirect(`/teachers?msg=${err}`)
   })
+})
+
+router.get('/sort', function(req, res) {
+  if(req.query.name == 'asc') {
+    res.redirect('/teachers?name=asc')
+  } else if(req.query.name == 'desc') {
+    res.redirect('/teachers?name=desc')
+  }
 })
 
 

@@ -13,9 +13,13 @@
 <%=msg%>
 <table>
     <tr>
-  <%column.forEach(key => { %>
-    <th><%=key%></th>
-  <%})%>
+  <%column.forEach(key => { 
+    if(key == 'First Name') { %>
+      <th><a href="/teachers/sort?name=<%=order%>">First Name</a></th>
+    <%} else { %>
+      <th><%=key%></th>
+    <% } 
+    })%>
   <tr>
   <% for(let i = 0; i < data.length; i++) { %>
     <tr>
